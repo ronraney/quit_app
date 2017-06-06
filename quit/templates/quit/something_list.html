@@ -9,11 +9,11 @@
         
         {% for thing in things %}
             <div>
-                <h1><a href="">{{ thing.title }}</a></h1>
+                <h2><a href="">{{ thing.title }}</a></h2>
                 <p>Quitter: {{ thing.quitter }}</p>
                 <p>Quit Date: {{ thing.quit_date }}</p>
                 <p>Cost per day: ${{ thing.cost_per_day }}</p>
-                <p>{{ thing.notes|linebreaksbr }}</p>
+                <p>Notes: {{ thing.notes|linebreaksbr }}</p>
             </div>
         {% endfor %}
     </body>
