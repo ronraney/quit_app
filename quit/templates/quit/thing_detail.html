@@ -1,5 +1,5 @@
 {% extends 'quit/base.html' %}
-
+{% load mathfilters %}
 {% block content %}
     <div class="something">
         <h2 class="title"><a href="{% url 'thing_detail' pk=thing.pk %}">{{ thing.title }}</a></h2>
@@ -11,7 +11,12 @@
         <p>Notes: {{ thing.notes|linebreaksbr }}</p>
         <hr>
         <h4>Here are some calculations for this information...</h4>
+        <p>Days since you quit:</p>
+        <button type="button" class="btn btn-info">{{ thing.timesince }}</button>
+        <hr>
         <p>How much money you have saved:</p>
-        <button type="button" class="btn btn-info">$450</div>
+        <button type="button" class="btn btn-info">${{ thing.savings }}</button>
+        <hr>
+        <a class="site-link" href="{% url 'something_list' %}">Go back to listing</a>
     </div>
 {% endblock %}

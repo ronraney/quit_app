@@ -55,4 +55,15 @@ body {
 }
 .something button {
     font-size: 200%;
+    margin-top: 10px;
+    padding: 10px 30px;
+}
+
+a.site-link {
+    font-size: 200%;
+    color: green;
+    font-family: 'Times New Roman';
+}
+a.site-link:hover {
+    text-decoration: none;
 }

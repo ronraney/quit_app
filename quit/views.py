@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Thing
+import datetime
+
 
 # Create your views here.
 def something_list(request):
