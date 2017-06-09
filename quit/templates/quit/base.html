@@ -14,7 +14,7 @@
                 <a href="{% url 'thing_new' %}" class="top-menu">Add new thing   <span class="glyphicon glyphicon-plus"></span></a> <!--Our new view is 'thing_new'-->
                 <p class="top-menu">Hello <span class="username">{{ user.username }}</span> <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
             {% else %}
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock">Login To Unlock</span></a>
+                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock">Login</span></a>
             {% endif %}
 
         </div>
