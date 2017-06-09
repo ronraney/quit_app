@@ -2,13 +2,18 @@
 
 {% block content %}
     <div class="something">
+        
         <h2 class="title"><a href="{% url 'thing_detail' pk=thing.pk %}">{{ thing.title }}</a></h2>
+        
         <p>Quitter: {{ thing.quitter }}</p>
         <div class="date">
             <p>Quit Date: {{ thing.quit_date }}</p>
         </div>
         <p>Cost per day: ${{ thing.cost_per_day }}</p>
         <p>Notes: {{ thing.notes|linebreaksbr }}</p>
+        {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'thing_edit' pk=thing.pk %}">Edit   <span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
         <hr>
         <h4>Here are some calculations for this information...</h4>
         <p>Days since you quit:</p>

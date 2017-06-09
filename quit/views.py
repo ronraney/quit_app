@@ -27,4 +27,15 @@ def thing_new(request):
         form = ThingForm()
     return render(request, 'quit/thing_edit.html', {'form': form}) #Pass it to the template
 
-
+def thing_edit(request, pk):
+    thing = get_object_or_404(Thing, pk=pk)
+    if request.method == "POST":
+        form = ThingForm(request.POST, instance=thing)
+        if form.is_valid():
+            thing = form.save(commit=False)
+            thing.quitter = request.user
+            thing.save()
+            return redirect('thing_detail', pk=thing.pk)
+    else:
+        form = ThingForm(instance=thing)
+    return render(request, 'quit/thing_edit.html', {'form': form})
