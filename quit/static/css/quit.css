@@ -67,3 +67,7 @@ a.site-link {
 a.site-link:hover {
     text-decoration: none;
 }
+
+.username {
+    color: black;
+}
