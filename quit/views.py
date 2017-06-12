@@ -5,11 +5,14 @@ from .forms import ThingForm
 from django.shortcuts import redirect
 import datetime
 
-
 # Create your views here.
-def something_list(request):
-    things = Thing.objects.filter(quit_date__lte=timezone.now()).order_by('quit_date')
-    return render(request, 'quit/something_list.html', {'things': things})
+  
+def something_list(request):    
+    if request.user.is_authenticated:
+        things = Thing.objects.filter(quitter=request.user).filter(quit_date__lte=timezone.now()).order_by('quit_date')
+        return render(request, 'quit/something_list.html', {'things': things})
+    else: 
+        return render(request, 'quit/base.html')
 
 def thing_detail(request, pk):
     thing = get_object_or_404(Thing, pk=pk)
