@@ -15,6 +15,7 @@
                 <p class="top-menu">Hello <span class="username">{{ user.username }}</span> <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
             {% else %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock">Login</span></a>
+                <a href="{% url 'signup' %}" class="top-menu"><span class="glyphicon glyphicon-lock">Signup</span></a>
             {% endif %}
 
         </div>

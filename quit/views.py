@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Thing
 from .forms import ThingForm
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 import datetime
 
 # Create your views here.
-  
+
 def something_list(request):    
     if request.user.is_authenticated:
         things = Thing.objects.filter(quitter=request.user).filter(quit_date__lte=timezone.now()).order_by('quit_date')
@@ -42,3 +44,17 @@ def thing_edit(request, pk):
     else:
         form = ThingForm(instance=thing)
     return render(request, 'quit/thing_edit.html', {'form': form})
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return render(request, 'quit/something_list.html')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
